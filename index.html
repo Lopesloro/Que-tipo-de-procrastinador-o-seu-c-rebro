@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Que tipo de procrastinador é o seu cérebro?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg1:#00060f;--bg2:#000d1a;--accent:#00b4d8;--accent2:#48cae4;
+  --glass:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.09);
+  --text:#e0f7ff;--muted:rgba(224,247,255,0.5)
+}
+body{
+  font-family:'Inter',sans-serif;background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,#00050e 100%);
+  min-height:100vh;color:var(--text);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px 16px;overflow-x:hidden;position:relative
+}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:drift 9s ease-in-out infinite}
+.orb1{width:320px;height:320px;background:rgba(0,180,216,0.14);top:-100px;left:-60px}
+.orb2{width:260px;height:260px;background:rgba(72,202,228,0.10);bottom:-80px;right:-60px;animation-delay:-4.5s}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(18px,28px)}}
+.particle{position:fixed;border-radius:50%;background:var(--accent);opacity:0;pointer-events:none;animation:float-up linear infinite}
+@keyframes float-up{0%{transform:translateY(100vh);opacity:0}10%{opacity:.3}90%{opacity:.15}100%{transform:translateY(-20px);opacity:0}}
+
+main{position:relative;z-index:1;width:100%;max-width:480px;display:flex;flex-direction:column;align-items:center;gap:24px}
+
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:12px;color:var(--accent);font-weight:500;letter-spacing:.5px;text-transform:uppercase;backdrop-filter:blur(12px);animation:fadeDown .6s ease}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+
+h1{font-size:clamp(24px,6vw,36px);font-weight:700;text-align:center;line-height:1.2;background:linear-gradient(135deg,#e0f7ff 0%,var(--accent) 55%,#90e0ef 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeUp .7s ease .1s both}
+.subtitle{font-size:15px;color:var(--muted);text-align:center;line-height:1.6;max-width:380px;animation:fadeUp .7s ease .2s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* brain / timer visual */
+.brain-card{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;align-items:center;gap:16px;backdrop-filter:blur(12px);animation:fadeUp .7s ease .25s both}
+.brain-icon{font-size:48px;animation:pulse-brain 2s ease-in-out infinite}
+@keyframes pulse-brain{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.timer-col{flex:1}
+.timer-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.timer-val{font-size:28px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.timer-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* cognitive indicators */
+.indicators{width:100%;display:flex;flex-direction:column;gap:10px;animation:fadeUp .7s ease .3s both}
+.ind-item{background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:12px 14px;backdrop-filter:blur(12px)}
+.ind-header{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.ind-bar{height:5px;background:rgba(255,255,255,.08);border-radius:100px;overflow:hidden}
+.ind-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1.4s ease}
+
+.card{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:24px;backdrop-filter:blur(16px);animation:fadeUp .7s ease .35s both}
+.checks{display:flex;flex-direction:column;gap:12px}
+.check-item{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(224,247,255,.8)}
+.check-icon{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px}
+
+.cta-btn{width:100%;padding:17px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;font-size:16px;font-weight:700;cursor:pointer;animation:fadeUp .7s ease .4s both,pulse 2.4s ease-in-out 1.2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,180,216,.4)}70%{box-shadow:0 0 0 14px rgba(0,180,216,0)}}
+
+.prog-bar{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:14px 16px;backdrop-filter:blur(12px);animation:fadeUp .7s ease .5s both}
+.prog-label{font-size:12px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between}
+.bar-track{height:6px;background:rgba(255,255,255,.08);border-radius:100px;overflow:hidden}
+.bar-fill{height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--accent),var(--accent2));animation:fill-bar 1.8s ease .8s forwards}
+@keyframes fill-bar{to{width:91%}}
+
+.counter{font-size:13px;color:var(--muted);text-align:center;animation:fadeUp .7s ease .6s both}
+.counter span{color:var(--accent);font-weight:600}
+
+.unlock{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:28px 24px;backdrop-filter:blur(16px);text-align:center;animation:fadeUp .7s ease .7s both}
+.unlock h2{font-size:20px;font-weight:700;margin-bottom:8px}
+.unlock p{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5}
+.unlock-btn{display:block;width:100%;padding:15px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;font-size:15px;font-weight:700;text-decoration:none;border:none;cursor:pointer}
+
+footer{font-size:11px;color:rgba(255,255,255,.2);text-align:center;animation:fadeUp .7s ease .8s both}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<main>
+  <div class="badge">🧠 neurociência cognitiva</div>
+
+  <h1>E se o problema nunca tivesse sido preguiça?</h1>
+
+  <p class="subtitle">Talvez você tenha passado anos se culpando por algo que é apenas a forma como seu cérebro funciona.</p>
+
+  <div class="brain-card">
+    <div class="brain-icon">🧠</div>
+    <div class="timer-col">
+      <div class="timer-label">Tempo médio de resposta</div>
+      <div class="timer-val" id="timer">02:00</div>
+      <div class="timer-sub">para descobrir seu perfil cognitivo</div>
+    </div>
+  </div>
+
+  <div class="indicators">
+    <div class="ind-item">
+      <div class="ind-header"><span>Perfeccionista paralisado</span><span>74%</span></div>
+      <div class="ind-bar"><div class="ind-fill" data-w="74"></div></div>
+    </div>
+    <div class="ind-item">
+      <div class="ind-header"><span>Procrastinador por ansiedade</span><span>61%</span></div>
+      <div class="ind-bar"><div class="ind-fill" data-w="61"></div></div>
+    </div>
+    <div class="ind-item">
+      <div class="ind-header"><span>Sem estimulação suficiente</span><span>48%</span></div>
+      <div class="ind-bar"><div class="ind-fill" data-w="48"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="checks">
+      <div class="check-item"><div class="check-icon">✓</div>Identifica seu gatilho emocional de perda de foco</div>
+      <div class="check-item"><div class="check-icon">✓</div>Por que técnicas tradicionais não funcionam pra você</div>
+      <div class="check-item"><div class="check-icon">✓</div>Baseado em neurociência comportamental</div>
+      <div class="check-item"><div class="check-icon">✓</div>Resultado personalizado em 2 minutos</div>
+    </div>
+  </div>
+
+  <button class="cta-btn">Descobrir meu tipo cerebral →</button>
+
+  <div class="prog-bar">
+    <div class="prog-label">
+      <span>91% se identificam com o resultado</span>
+      <span id="pct">0%</span>
+    </div>
+    <div class="bar-track"><div class="bar-fill"></div></div>
+  </div>
+
+  <p class="counter"><span id="live-count">22</span> pessoas descobriram seu perfil nos últimos 5 minutos</p>
+
+  <div class="unlock">
+    <h2>🧠 Desbloquear meu plano de foco</h2>
+    <p>O que vai acontecer com sua carreira e seus objetivos se esse padrão continuar pelos próximos 5 anos — e como mudar isso agora.</p>
+    <a href="[INSERIR LINK DE PAGAMENTO AQUI]" class="unlock-btn">Quero meu plano de foco →</a>
+  </div>
+
+  <footer>Prepare-se para descobrir algo que provavelmente ninguém nunca explicou pra você.</footer>
+</main>
+
+<script>
+(function(){for(let i=0;i<10;i++){const p=document.createElement('div');p.className='particle';p.style.cssText=`left:${Math.random()*100}%;animation-duration:${7+Math.random()*8}s;animation-delay:${Math.random()*8}s;width:${2+Math.random()*3}px;height:${2+Math.random()*3}px`;document.body.appendChild(p)}})();
+
+// animate bars
+setTimeout(()=>{document.querySelectorAll('.ind-fill').forEach(el=>{el.style.width=el.dataset.w+'%'})},400);
+
+// countdown
+let secs=120;const tv=document.getElementById('timer');
+const tc=setInterval(()=>{secs--;const m=String(Math.floor(secs/60)).padStart(2,'0');const s=String(secs%60).padStart(2,'0');tv.textContent=m+':'+s;if(secs<=0)clearInterval(tc)},1000);
+
+let n=0;const pct=document.getElementById('pct');
+setTimeout(()=>{const t=setInterval(()=>{n++;pct.textContent=n+'%';if(n>=91)clearInterval(t)},18)},800);
+const el=document.getElementById('live-count');
+setInterval(()=>{el.textContent=Math.max(10,parseInt(el.textContent)+(Math.random()>.5?1:-1))},4200);
+</script>
+</body>
+</html>
